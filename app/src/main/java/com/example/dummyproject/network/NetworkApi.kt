@@ -1,18 +1,15 @@
 package com.example.dummyproject.network
 
-import okhttp3.RequestBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.http.Body
+import com.example.dummyproject.ui.list.model.Products
+import com.example.dummyproject.util.Constants
 import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.QueryMap
+import retrofit2.http.Path
 
 interface NetworkApi {
 
-    @POST("/recipes/complexSearch")
-    suspend fun getRecipes(
-        @Body body: JSONObject
-    ): Response<JSONObject>
+    @GET(Constants.PRODUCTS_API)
+    suspend fun getProducts(): ArrayList<Products>
+
+    @GET(Constants.PRODUCT_API)
+    suspend fun getProduct(@Path("id") id: String): Products
 }

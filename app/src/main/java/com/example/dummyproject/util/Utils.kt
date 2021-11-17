@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.os.Build
 import android.view.View
 import android.view.Window
@@ -12,7 +13,8 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import com.example.dummyproject.MainActivity
+import com.example.dummyproject.MyApplication
+import com.example.dummyproject.ui.list.MainActivity
 
 
 object Utils {
@@ -104,18 +106,27 @@ object Utils {
      fun hideDropDown(powerSpinnerView: PowerSpinnerView?) {
          powerSpinnerView?.dismiss()
      }*/
-    public fun hasInternetConnection(activity: Activity?): Boolean {
-        val connectivityManager = activity?.getSystemService(
+    fun hasInternetConnection(): Boolean {
+        val connectivityManager = MyApplication.get()?.activity!!.getSystemService(
             Context.CONNECTIVITY_SERVICE
         ) as ConnectivityManager
-        val activeNetwork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork ?: return false
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+            return when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        } else {
+            val netInfo: NetworkInfo = connectivityManager.activeNetworkInfo!!
+            return netInfo.isConnectedOrConnecting
         }
+
     }
+
 
 }

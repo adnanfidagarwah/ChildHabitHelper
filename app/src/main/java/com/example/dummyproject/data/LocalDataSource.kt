@@ -9,7 +9,7 @@ class LocalDataSource @Inject constructor(
     private val networkApi: NetworkApi
 ) {
 
-    suspend fun getRecipes(queries:JSONObject): Response<JSONObject> {
-        return networkApi.getRecipes(queries)
-    }
+//    suspend fun getRecipes(queries:JSONObject): Response<JSONObject> {
+//        return networkApi.getRecipes(queries)
+//    }
 }
