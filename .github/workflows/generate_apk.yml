@@ -1,8 +1,6 @@
 name: Generate APK
 on:
-  push:
-    branches: [ main ]
-    
+  workflow_dispatch:
 jobs:
   # Run Unit Tests etc before Generating APK here.
   # ....
