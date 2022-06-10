@@ -14,7 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.example.dummyproject.MyApplication
-import com.example.dummyproject.ui.list.MainActivity
+import com.example.dummyproject.ui.MainActivity
 
 
 object Utils {

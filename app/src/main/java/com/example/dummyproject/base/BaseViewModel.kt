@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.eshaafi.patient.util.observer.ClickEvent
+import com.eshaafi.patient.util.observer.toObject
 import com.example.dummyproject.util.Constants
 import com.example.dummyproject.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import org.json.JSONObject
+import retrofit2.HttpException
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -52,5 +55,22 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
 //            }
 //        }
 //    }
+protected fun handleErrorResponse(e: Exception): String {
+    return if (e is HttpException) {
+        val error = e.response()?.errorBody()?.string()?.toObject<ErrorResponse>()
+        if (error?.statusCode == 404)
+            error.data.message
+        else
+            error?.message!!
+    } else {
+        e.message.toString()
+    }
 
+}
+
+    override fun onCleared() {
+        coroutinesScope.cancel()
+        super.onCleared()
+
+    }
 }

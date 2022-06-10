@@ -1,5 +1,6 @@
 package com.example.dummyproject
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
@@ -11,6 +12,7 @@ class MyApplication: Application() {
 
     companion object {
 
+        @SuppressLint("StaticFieldLeak")
         var INSTANCE: MyApplication? = null
 
         fun get(): MyApplication? {
