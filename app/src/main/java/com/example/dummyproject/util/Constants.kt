@@ -4,10 +4,8 @@ class Constants {
 
     companion object {
 
-        const val BASE_URL = "https://fakestoreapi.com"
-        const val PRODUCTS_API = "products"
-        const val PRODUCT_API = "products/{id}"
-
+        const val BASE_URL = "https://api.github.com"
+        const val REPOSITORIES_API = "/search/repositories?q=language=+sort:stars"
 
     }
 

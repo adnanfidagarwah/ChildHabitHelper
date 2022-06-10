@@ -1,15 +1,17 @@
-package com.eshaafi.patient.data.di
+package com.example.dummyproject.data.di
 
 
+import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
-import com.example.dummyproject.MyApplication
 import com.example.dummyproject.network.NetworkApi
 import com.example.dummyproject.util.Constants
+import com.example.dummyproject.util.NoConnectionInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -26,10 +28,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesChuckInterceptor(): ChuckerInterceptor {
+    fun providesChuckInterceptor(@ApplicationContext context: Context): ChuckerInterceptor {
         // Create the Collector
         val chuckerCollector = ChuckerCollector(
-            context = MyApplication.get()?.activity!!,
+            context = context,
             // Toggles visibility of the push notification
             showNotification = true,
             // Allows to customize the retention period of collected data
@@ -37,7 +39,7 @@ object NetworkModule {
         )
 
         // Create the Interceptor
-        return ChuckerInterceptor.Builder(MyApplication.get()?.activity!!)
+        return ChuckerInterceptor.Builder(context)
             // The previously created Collector
             .collector(chuckerCollector)
             .maxContentLength(250_000L)
@@ -68,11 +70,13 @@ object NetworkModule {
         return null
     }
 
+
     @Singleton
     @Provides
     fun provideHttpClient(
         chuckerInterceptor: ChuckerInterceptor,
-        logging: HttpLoggingInterceptor
+        logging: HttpLoggingInterceptor,
+        noConnectionInterceptor: NoConnectionInterceptor
     ): OkHttpClient {
 
 
@@ -80,6 +84,7 @@ object NetworkModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(logging)
+            .addInterceptor(noConnectionInterceptor)
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = prepareRequestWithHeader(original)

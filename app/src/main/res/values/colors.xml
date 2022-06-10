@@ -13,7 +13,7 @@
 
     <color name="gray">#3A3A3C</color>
     <color name="tab_inactive">#7E7E7E</color>
-    <color name="ripple_color">#C2CFE0</color>
+    <color name="ripple_color">#B3B3B3 </color>
     <color name="light_gray">#707683</color>
     <color name="strok_color">#A1A1A1</color>
     <color name="greenish">#009B94</color>

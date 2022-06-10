@@ -1,20 +1,13 @@
 package com.example.dummyproject.base
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.eshaafi.patient.util.observer.ClickEvent
-import com.eshaafi.patient.util.observer.toObject
-import com.example.dummyproject.util.Constants
-import com.example.dummyproject.util.NetworkResult
+import com.example.dummyproject.util.observer.toObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
-import org.json.JSONObject
 import retrofit2.HttpException
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel

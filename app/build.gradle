@@ -202,10 +202,4 @@ dependencies {
 
 
 
-
-    //chuck library
-//    debugImplementation "com.readystatesoftware.chuck:library:$chuck_version"
-//    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck_version"
-
-
 }

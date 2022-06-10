@@ -1,4 +1,4 @@
-package com.eshaafi.patient.util.observer
+package com.example.dummyproject.util.observer
 
 /**
 * Used as a wrapper for data that is exposed via a LiveData that represents an event.

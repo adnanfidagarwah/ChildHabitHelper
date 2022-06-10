@@ -1,4 +1,4 @@
-package com.eshaafi.patient.util.observer
+package com.example.dummyproject.util.observer
 
 import androidx.lifecycle.Observer
 
