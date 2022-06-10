@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/trending"
                 android:textAppearance="?attr/textAppearanceHeadline5"
-                android:textColor="@color/colorAccent"
+                android:textColor="?attr/colorOnPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
