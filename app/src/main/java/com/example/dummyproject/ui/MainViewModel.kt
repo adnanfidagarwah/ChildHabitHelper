@@ -49,5 +49,6 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
             _repositoriesResponse.postValue(NetworkResult.Error(e.message.toString()))
         }
     }
+
 }
 

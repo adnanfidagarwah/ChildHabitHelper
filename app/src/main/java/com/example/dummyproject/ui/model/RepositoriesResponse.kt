@@ -15,8 +15,10 @@ data class RepositoriesResponse(
 ) {
     @Keep
     data class Item(
+        var expand: Boolean = false,
         @SerializedName("allow_forking")
         var allowForking: Boolean = false, // true
+        // true
         @SerializedName("archive_url")
         var archiveUrl: String = "", // https://api.github.com/repos/golang/go/{archive_format}{/ref}
         @SerializedName("archived")

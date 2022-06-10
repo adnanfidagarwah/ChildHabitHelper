@@ -11,8 +11,13 @@ class RepositoryViewHolder(
     RecyclerView.ViewHolder(binding?.root!!) {
 
 
-    fun bind(model: RepositoriesResponse.Item) {
+    fun bind(model: RepositoriesResponse.Item, position:Int) {
         binding?.model = model
         binding?.executePendingBindings()
+
+        binding?.root?.setOnClickListener{
+            adapterOnClick(position)
+        }
+
     }
 }

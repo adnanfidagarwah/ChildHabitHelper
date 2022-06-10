@@ -23,7 +23,7 @@ class RepositoryAdapter(
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
 
-        holder.bind(repositories[position])
+        holder.bind(repositories[position], position)
 
     }
 

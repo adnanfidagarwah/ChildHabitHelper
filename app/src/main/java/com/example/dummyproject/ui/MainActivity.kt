@@ -10,6 +10,7 @@ import com.example.dummyproject.R
 import com.example.dummyproject.base.BaseActivity
 import com.example.dummyproject.databinding.MainActivityDataBinding
 import com.example.dummyproject.ui.adapter.RepositoryAdapter
+import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,10 +21,13 @@ class MainActivity : BaseActivity() {
     private var binding: MainActivityDataBinding? = null
     private val mainViewModel: MainViewModel by viewModels()
 
+    private var repositories: ArrayList<RepositoriesResponse.Item> = ArrayList()
+
     private val repositoryAdapter: RepositoryAdapter by lazy {
         RepositoryAdapter()
         { position ->
-
+            repositories[position].expand = !repositories[position].expand
+            repositoryAdapter.datasetChanged(repositories)
         }
     }
 
@@ -61,7 +65,8 @@ class MainActivity : BaseActivity() {
             when (response) {
                 is NetworkResult.Success -> {
                     response.data?.items?.let {
-                        repositoryAdapter.datasetChanged(it)
+                        repositories = it
+                        repositoryAdapter.datasetChanged(repositories)
                     }
 
                     binding?.shimmerView?.root?.visibility = View.GONE
