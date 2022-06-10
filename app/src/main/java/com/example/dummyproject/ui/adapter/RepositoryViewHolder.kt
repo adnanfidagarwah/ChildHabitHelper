@@ -2,6 +2,7 @@ package com.example.dummyproject.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dummyproject.databinding.RepositoryItemDataBinding
+import com.example.dummyproject.ui.model.RepositoriesResponse
 
 class RepositoryViewHolder(
     val binding: RepositoryItemDataBinding?,
@@ -10,4 +11,8 @@ class RepositoryViewHolder(
     RecyclerView.ViewHolder(binding?.root!!) {
 
 
+    fun bind(model: RepositoriesResponse.Item) {
+        binding?.model = model
+        binding?.executePendingBindings()
+    }
 }

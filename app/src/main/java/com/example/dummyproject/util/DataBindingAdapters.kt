@@ -1,41 +1,32 @@
 package com.example.dummyproject.util
 
-import android.graphics.drawable.Drawable
-import android.net.Uri
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.transform.CircleCropTransformation
-import android.widget.RatingBar
+import com.example.dummyproject.R
 
 
-
-
-class DataBindingAdapters {
-    companion object {
-        @BindingAdapter("profileImage")
-        @JvmStatic
-        fun setImageUrl(view: ImageView, imageUrl: String?) {
-            if (imageUrl == null) {
-                view.setImageURI(null)
-            } else {
-                view.load(imageUrl) {
-                    crossfade(true)
-//                    placeholder(R.drawable.app_logo)
-                }
-            }
-        }
-
-        @BindingAdapter("rating")
-        @JvmStatic
-        fun setRating(view: RatingBar?, rating: Double) {
-            if (view != null) {
-                val rate = rating.toFloat()
-                view.rating = rate
-            }
-        }
-
-
+@BindingAdapter("hide")
+fun hideView(view: View?, hide: Boolean = false) {
+    if (hide) {
+        view?.visibility = View.GONE
+    } else {
+        view?.visibility = View.VISIBLE
     }
+}
 
+
+@BindingAdapter("profileImage")
+fun setImageUrl(view: ImageView, imageUrl: String?) {
+    if (imageUrl == null) {
+        view.setImageURI(null)
+    } else {
+        view.load(imageUrl) {
+            crossfade(true)
+            transformations(CircleCropTransformation())
+            placeholder(R.drawable.ic_launcher_background)
+        }
+    }
 }

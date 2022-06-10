@@ -4,18 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.dummyproject.base.BaseViewModel
 import com.example.dummyproject.data.Repository
+import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
-    private var _repositoriesResponse: MutableLiveData<NetworkResult<JSONObject>> =
+
+
+    /**======== repositories Response MutableLiveData ========*/
+    private var _repositoriesResponse: MutableLiveData<NetworkResult<RepositoriesResponse>> =
         MutableLiveData()
-    val repositoriesResponse: LiveData<NetworkResult<JSONObject>> =
+    val repositoriesResponse: LiveData<NetworkResult<RepositoriesResponse>> =
         _repositoriesResponse
 
 
@@ -23,7 +26,10 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
         getRepositories()
     }
 
-    private fun getRepositories() = coroutinesScope.launch {
+    /**======== API call Methods ========*/
+
+    /**======== get Repositories API call Methods ========*/
+    fun getRepositories() = coroutinesScope.launch {
         getRepositoriesSafeCall()
     }
 
@@ -32,7 +38,12 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
         _repositoriesResponse.postValue(NetworkResult.Loading())
         try {
             val response = repository.remote.getRepositories()
-            _repositoriesResponse.postValue(NetworkResult.Success(response.data))
+            if (response.isSuccessful)
+                response.body()?.let {
+                    _repositoriesResponse.postValue(NetworkResult.Success(it))
+                }
+            else
+                _repositoriesResponse.postValue(NetworkResult.Error(response.message().toString()))
 
         } catch (e: Exception) {
             _repositoriesResponse.postValue(NetworkResult.Error(e.message.toString()))

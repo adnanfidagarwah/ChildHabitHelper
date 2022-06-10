@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dummyproject.databinding.RepositoryItemDataBinding
+import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.ListDiffUtil
 
 class RepositoryAdapter(
-    private var repositories: ArrayList<String> = ArrayList(),
+    private var repositories: ArrayList<RepositoriesResponse.Item> = ArrayList(),
     private val adapterOnClick: (Int) -> Unit
 ) :
     RecyclerView.Adapter<RepositoryViewHolder>() {
@@ -21,12 +22,14 @@ class RepositoryAdapter(
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
-        holder.binding?.executePendingBindings()
+
+        holder.bind(repositories[position])
+
     }
 
-    fun datasetChanged(repositories: ArrayList<String>?) {
+    fun datasetChanged(repositories: ArrayList<RepositoriesResponse.Item>) {
         val itemsDiffUtil =
-            ListDiffUtil(this.repositories, repositories!!)
+            ListDiffUtil(this.repositories, repositories)
         val diffUtilResult = DiffUtil.calculateDiff(itemsDiffUtil)
         this.repositories = repositories
         diffUtilResult.dispatchUpdatesTo(this)
@@ -36,7 +39,7 @@ class RepositoryAdapter(
 
 
     override fun getItemCount(): Int {
-        return 10
+        return repositories.size
 
     }
 

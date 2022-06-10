@@ -3,18 +3,25 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="RepositoryItemDataBinding" />
+    <data class="RepositoryItemDataBinding">
+
+        <variable
+            name="model"
+            type="com.example.dummyproject.ui.model.RepositoriesResponse.Item" />
+
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_16">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/avatar_imageview"
             android:layout_width="@dimen/min_touch_target_size"
             android:layout_height="@dimen/min_touch_target_size"
-            android:src="@drawable/ic_launcher_background"
+            profileImage="@{model.owner.avatarUrl}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"
-            android:text="@string/trending"
+            android:text="@{model.name}"
             android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="@color/tab_inactive"
             app:layout_constraintStart_toEndOf="@+id/avatar_imageview"
@@ -36,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"
             android:layout_marginTop="@dimen/margin_8"
-            android:text="@string/trending"
+            android:text="@{model.fullName}"
             android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textColor="@color/tab_inactive"
             app:layout_constraintStart_toEndOf="@+id/avatar_imageview"
@@ -64,7 +71,7 @@
                     android:id="@+id/description_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Discription"
+                    android:text="@{model.description}"
                     android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="@color/tab_inactive"
                     app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginTop="2dp"
-                    android:text="Discription"
+                    android:text="@{model.language}"
                     android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="@color/tab_inactive"
                     app:layout_constraintBottom_toBottomOf="@+id/viewPager2"
@@ -111,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginTop="2dp"
-                    android:text="116"
+                    android:text="@{Integer.toString(model.forksCount)}"
                     android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="@color/tab_inactive"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
