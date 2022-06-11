@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.dummyproject.R
+import net.cachapa.expandablelayout.ExpandableLayout
 
 
 @BindingAdapter("hide")
@@ -16,6 +17,17 @@ fun hideView(view: View?, hide: Boolean = false) {
         view?.visibility = View.VISIBLE
     }
 }
+
+
+@BindingAdapter("expand")
+fun expandView(expandableLayout: ExpandableLayout?, hide: Boolean = false) {
+    if (hide) {
+        expandableLayout?.expand(true)
+    } else {
+        expandableLayout?.collapse(true)
+    }
+}
+
 
 
 @BindingAdapter("profileImage")

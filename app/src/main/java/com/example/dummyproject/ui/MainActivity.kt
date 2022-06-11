@@ -23,9 +23,16 @@ class MainActivity : BaseActivity() {
 
     private var repositories: ArrayList<RepositoriesResponse.Item> = ArrayList()
 
+    var lastItemClickedPosition: Int? = null
+
     private val repositoryAdapter: RepositoryAdapter by lazy {
         RepositoryAdapter()
         { position ->
+            lastItemClickedPosition?.let {
+                repositories[it].expand = false
+            }
+
+            lastItemClickedPosition = position
             repositories[position].expand = !repositories[position].expand
             repositoryAdapter.datasetChanged(repositories)
         }
@@ -90,6 +97,4 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-
-
 }
