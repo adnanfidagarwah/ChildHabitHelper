@@ -8,8 +8,8 @@ sealed class NetworkResult<T>(
 
     class Success<T>(data: T) : NetworkResult<T>(Status.SUCCESS, data)
     class Error<T>(message: String?, data: T? = null) :
-        NetworkResult<T>(Status.LOADING, data, message)
+        NetworkResult<T>(Status.ERROR, data, message)
 
-    class Loading<T> : NetworkResult<T>(Status.ERROR)
+    class Loading<T> : NetworkResult<T>(Status.LOADING)
 
 }

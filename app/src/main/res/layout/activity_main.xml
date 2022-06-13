@@ -6,9 +6,14 @@
 
     <data class="MainActivityDataBinding">
 
+        <import type="com.example.dummyproject.util.Status"/>
         <variable
             name="viewModel"
             type="com.example.dummyproject.ui.MainViewModel" />
+
+        <variable
+            name="networkResult"
+            type="com.example.dummyproject.util.NetworkResult" />
 
     </data>
 
@@ -19,7 +24,10 @@
 
         <include
             android:id="@+id/include"
-            layout="@layout/app_header" />
+            layout="@layout/app_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <include
@@ -27,6 +35,7 @@
             layout="@layout/shimmer_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            hide="@{networkResult.status == Status.LOADING }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +47,7 @@
             layout="@layout/error_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="gone"
+            hide="@{networkResult.status == Status.ERROR }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +63,7 @@
             android:orientation="vertical"
             android:paddingVertical="@dimen/margin_16"
             android:scrollbars="none"
-            android:visibility="gone"
+            hide="@{networkResult.status == Status.SUCCESS }"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

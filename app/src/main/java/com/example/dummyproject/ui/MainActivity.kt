@@ -1,7 +1,6 @@
 package com.example.dummyproject.ui
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,18 +21,20 @@ class MainActivity : BaseActivity() {
     private val mainViewModel: MainViewModel by viewModels()
 
     private var repositories: ArrayList<RepositoriesResponse.Item> = ArrayList()
-
     var lastItemClickedPosition: Int? = null
 
     private val repositoryAdapter: RepositoryAdapter by lazy {
         RepositoryAdapter()
         { position ->
-            lastItemClickedPosition?.let {
-                repositories[it].expand = false
-            }
 
-            lastItemClickedPosition = position
+            if (lastItemClickedPosition != position) {
+                lastItemClickedPosition?.let {
+                    repositories[it].expand = false
+                }
+                lastItemClickedPosition = position
+            }
             repositories[position].expand = !repositories[position].expand
+
             repositoryAdapter.datasetChanged(repositories)
         }
     }
@@ -42,7 +43,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding?.viewModel = mainViewModel
 
@@ -57,6 +59,7 @@ class MainActivity : BaseActivity() {
             this,
             LinearLayoutManager.VERTICAL
         )
+
         binding?.recyclerView?.addItemDecoration(dividerItemDecoration)
 
         binding?.recyclerView?.adapter = repositoryAdapter
@@ -69,30 +72,13 @@ class MainActivity : BaseActivity() {
 
         /**======================== API RESPONSE OBSERVERS ========================*/
         mainViewModel.repositoriesResponse.observe(this) { response ->
+            binding?.networkResult = response
             when (response) {
                 is NetworkResult.Success -> {
                     response.data?.items?.let {
                         repositories = it
                         repositoryAdapter.datasetChanged(repositories)
                     }
-
-                    binding?.shimmerView?.root?.visibility = View.GONE
-                    binding?.recyclerView?.visibility = View.VISIBLE
-                    binding?.shimmerView?.shimmerLayout?.stopShimmer()
-                    binding?.errorView?.root?.visibility = View.GONE
-                }
-                is NetworkResult.Error -> {
-                    binding?.shimmerView?.root?.visibility = View.GONE
-                    binding?.recyclerView?.visibility = View.GONE
-                    binding?.shimmerView?.shimmerLayout?.stopShimmer()
-                    binding?.errorView?.root?.visibility = View.VISIBLE
-
-                }
-                is NetworkResult.Loading -> {
-                    binding?.shimmerView?.root?.visibility = View.VISIBLE
-                    binding?.recyclerView?.visibility = View.GONE
-                    binding?.shimmerView?.shimmerLayout?.startShimmer()
-                    binding?.errorView?.root?.visibility = View.GONE
                 }
             }
         }

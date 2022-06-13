@@ -10,11 +10,11 @@ import net.cachapa.expandablelayout.ExpandableLayout
 
 
 @BindingAdapter("hide")
-fun hideView(view: View?, hide: Boolean = false) {
-    if (hide) {
-        view?.visibility = View.GONE
-    } else {
+fun hideView(view: View?, show: Boolean = false) {
+    if (show) {
         view?.visibility = View.VISIBLE
+    } else {
+        view?.visibility = View.GONE
     }
 }
 
