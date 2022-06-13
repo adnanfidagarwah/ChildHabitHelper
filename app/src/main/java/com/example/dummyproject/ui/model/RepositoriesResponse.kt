@@ -9,7 +9,7 @@ data class RepositoriesResponse(
     @SerializedName("incomplete_results")
     var incompleteResults: Boolean = false, // false
     @SerializedName("items")
-    var items: ArrayList<Item> = ArrayList(),
+    var items: List<Item> = listOf(),
     @SerializedName("total_count")
     var totalCount: Int = 0 // 325779
 ) {

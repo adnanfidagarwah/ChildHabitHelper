@@ -1,6 +1,7 @@
 package com.example.dummyproject.base
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.dummyproject.util.observer.toObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -13,9 +14,6 @@ import javax.inject.Inject
 @HiltViewModel
 open class BaseViewModel @Inject constructor() : ViewModel() {
 
-    //kotlin corutines
-    private val job = Job()
-    protected val coroutinesScope: CoroutineScope = CoroutineScope(job + Dispatchers.IO)
 
 
 //    protected fun handleResponse(response: Any, event: Int): ClickEvent<NetworkResult<Any>> {
@@ -62,7 +60,7 @@ protected fun handleErrorResponse(e: Exception): String {
 }
 
     override fun onCleared() {
-        coroutinesScope.cancel()
+        viewModelScope.cancel()
         super.onCleared()
 
     }

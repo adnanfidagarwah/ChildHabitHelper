@@ -7,7 +7,7 @@ import com.example.dummyproject.databinding.RepositoryItemDataBinding
 import com.example.dummyproject.ui.model.RepositoriesResponse
 
 class RepositoryAdapter(
-    private var repositories: ArrayList<RepositoriesResponse.Item> = ArrayList(),
+    private var repositories: List<RepositoriesResponse.Item> = listOf(),
     private val adapterOnClick: (Int) -> Unit
 ) :
     RecyclerView.Adapter<RepositoryViewHolder>() {
@@ -24,7 +24,7 @@ class RepositoryAdapter(
 
     }
 
-    fun datasetChanged(repositories: ArrayList<RepositoriesResponse.Item>) {
+    fun datasetChanged(repositories: List<RepositoriesResponse.Item>) {
 //        val itemsDiffUtil =
 //            ItemsDiffUtil(this.repositories, repositories)
 //        val diffUtilResult = DiffUtil.calculateDiff(itemsDiffUtil)

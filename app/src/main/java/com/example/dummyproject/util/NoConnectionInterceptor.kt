@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 import java.net.InetSocketAddress
@@ -69,5 +70,8 @@ class NoConnectionInterceptor @Inject constructor(@ApplicationContext val contex
     class NoInternetException() : IOException() {
         override val message: String
             get() = "No internet connection"
+
+
     }
+
 }

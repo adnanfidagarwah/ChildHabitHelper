@@ -9,7 +9,7 @@ import com.example.dummyproject.R
 import net.cachapa.expandablelayout.ExpandableLayout
 
 
-@BindingAdapter("hide")
+@BindingAdapter("show")
 fun hideView(view: View?, show: Boolean = false) {
     if (show) {
         view?.visibility = View.VISIBLE
