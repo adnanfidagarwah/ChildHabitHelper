@@ -77,13 +77,13 @@ class MainActivity : BaseActivity() {
             mainViewModel.getRepositories()
             binding?.refreshLayout?.isRefreshing = false
         }
+//        loadDataFromCache()
         /**======================== OBSERVERS ========================*/
 
         /**======================== API RESPONSE OBSERVERS ========================*/
         mainViewModel.repositoriesResponse.observe(this) { response ->
             binding?.networkResult = response
-            loadDataFromCache()
-   /*         when (response) {
+            when (response) {
                 is NetworkResult.Success -> {
                     response.data?.items?.let {
                         repositories = it
@@ -95,7 +95,7 @@ class MainActivity : BaseActivity() {
                     loadDataFromCache()
                 }
 
-            }*/
+            }
 
 
         }
