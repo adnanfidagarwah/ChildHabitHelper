@@ -101,6 +101,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
+
     private fun loadDataFromCache() {
         lifecycleScope.launch {
             mainViewModel.readRepositories.observe(this@MainActivity) { database ->
