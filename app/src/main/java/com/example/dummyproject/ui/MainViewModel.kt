@@ -10,7 +10,6 @@ import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -68,7 +67,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     ) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertRepositories(repositoriesEntity)
-            repository.local.readRepositories().collectLatest {
+            repository.local.readRepositories().collect {
                 _readRepositories.postValue(it)
                 _repositoriesResponse.postValue(NetworkResult.Success(repositoriesResponse))
             }
@@ -84,7 +83,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     /**========read data from local database ========*/
     private fun readRepositoriesFromCache(message: String) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.local.readRepositories().collectLatest {
+            repository.local.readRepositories().collect {
                 _readRepositories.postValue(it)
                 _repositoriesResponse.postValue(NetworkResult.Error(message))
             }

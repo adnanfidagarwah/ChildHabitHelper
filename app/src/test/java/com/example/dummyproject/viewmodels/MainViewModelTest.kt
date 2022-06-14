@@ -24,7 +24,7 @@ import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class PhoneNoViewModelTest : TestCase() {
+class MainViewModelTest : TestCase() {
 
     @Rule
     @JvmField
