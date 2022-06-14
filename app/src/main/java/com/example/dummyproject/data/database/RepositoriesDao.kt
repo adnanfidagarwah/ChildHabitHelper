@@ -4,18 +4,17 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.dummyproject.data.database.entites.RepositoriesEntity
-import kotlinx.coroutines.flow.Flow
+import com.example.dummyproject.ui.model.RepositoriesResponse
 
 
 @Dao
 interface RepositoriesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRepositories(repositoriesEntity: RepositoriesEntity)
+    suspend fun insertRepositories(repositoriesResponse: RepositoriesResponse)
 
-    @Query("SELECT * FROM repositories_table")
-    fun readRepositories(): Flow<List<RepositoriesEntity>>
+    @Query("SELECT * FROM RepositoriesResponse")
+    fun readRepositories(): RepositoriesResponse
 
 
 }

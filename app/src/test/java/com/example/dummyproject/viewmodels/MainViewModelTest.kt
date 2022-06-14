@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.dummyproject.data.LocalDataSource
 import com.example.dummyproject.data.RemoteDataSource
 import com.example.dummyproject.data.Repository
+import com.example.dummyproject.data.database.RepositoriesDao
 import com.example.dummyproject.ui.MainViewModel
 import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.NetworkResult
@@ -35,6 +36,7 @@ class MainViewModelTest : TestCase() {
     private lateinit var remote: RemoteDataSource
     private lateinit var local: LocalDataSource
     private lateinit var viewModel: MainViewModel
+    private lateinit var repositoriesDao: RepositoriesDao
 
 
     @Before
@@ -43,6 +45,8 @@ class MainViewModelTest : TestCase() {
 
         remote = mock(RemoteDataSource::class.java)
         local = mock(LocalDataSource::class.java)
+
+        repositoriesDao = mock(RepositoriesDao::class.java)
 
         repository = Repository(remoteDataSource = remote, localDataSource = local)
 
@@ -57,16 +61,22 @@ class MainViewModelTest : TestCase() {
 
 
     @Test
-    fun `getRepositoriesSuccessCase`() = testDispatcher.runBlockingTest {
+    fun getRepositoriesSuccessCase() = testDispatcher.runBlockingTest {
         val repositoriesResponseObserver =
             mockk<NetworkResult<RepositoriesResponse>>(relaxed = true)
+
         Mockito.`when`(repository.remote.getRepositories())
             .thenReturn(Response.success(RepositoriesResponse()))
+
+        Mockito.`when`(repository.local.readRepositories())
+            .thenReturn(RepositoriesResponse())
+
         viewModel.getRepositories()
 
         viewModel.repositoriesResponse.observeForever { repositoriesResponseObserver.data }
 
         Assert.assertTrue(viewModel.repositoriesResponse.value?.data?.incompleteResults == false)
+        Assert.assertTrue(viewModel.repositoriesResponse.value?.data?.items?.isEmpty() == true)
 
     }
 }

@@ -1,10 +1,11 @@
 package com.example.dummyproject.util
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.dummyproject.ui.model.RepositoriesResponse
 
-class ItemsDiffUtil<T>(
-    private val oldList: List<T>,
-    private val newList: List<T>
+class ItemsDiffUtil(
+    private val oldList: List<RepositoriesResponse.Item> ,
+    private val newList: List<RepositoriesResponse.Item>
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size

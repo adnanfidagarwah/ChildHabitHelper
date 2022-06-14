@@ -27,13 +27,13 @@ class MainActivityTest {
     @Test
     fun testRepositoriesLists() {
 
-        Espresso.onView(withId(R.id.shimmer_view))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.shimmer_view))
+            .check(matches(isDisplayed()))
         Thread.sleep(10000)
-        Espresso.onView(withId(R.id.recyclerView))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.recyclerView))
+            .check(matches(isDisplayed()))
 
-        Espresso.onView(withId(R.id.recyclerView)).perform(
+        onView(withId(R.id.recyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RepositoryViewHolder>
                 (5, ViewActions.click())
         )
@@ -42,7 +42,7 @@ class MainActivityTest {
 
     }
 
-    fun hasItem(matcher: Matcher<View?>): Matcher<View?>? {
+    private fun hasItem(matcher: Matcher<View?>): Matcher<View?>? {
         return object : BoundedMatcher<View?, RecyclerView>(RecyclerView::class.java) {
             override fun describeTo(description: Description) {
                 description.appendText("has item: ")

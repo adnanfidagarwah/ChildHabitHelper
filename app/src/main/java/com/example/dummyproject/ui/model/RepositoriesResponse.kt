@@ -2,8 +2,11 @@ package com.example.dummyproject.ui.model
 
 
 import androidx.annotation.Keep
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 @Keep
 data class RepositoriesResponse(
     @SerializedName("incomplete_results")
@@ -13,6 +16,9 @@ data class RepositoriesResponse(
     @SerializedName("total_count")
     var totalCount: Int = 0 // 325779
 ) {
+    @PrimaryKey(autoGenerate = false)
+    var id: Int = 0
+
     @Keep
     data class Item(
         var expand: Boolean = false,
@@ -116,7 +122,7 @@ data class RepositoriesResponse(
         @SerializedName("milestones_url")
         var milestonesUrl: String = "", // https://api.github.com/repos/golang/go/milestones{/number}
         @SerializedName("mirror_url")
-        var mirrorUrl: Any = Any(), // null
+        var mirrorUrl: String = "", // null
         @SerializedName("name")
         var name: String = "", // go
         @SerializedName("node_id")

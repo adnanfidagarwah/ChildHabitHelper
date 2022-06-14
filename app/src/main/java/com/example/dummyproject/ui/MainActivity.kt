@@ -3,7 +3,6 @@ package com.example.dummyproject.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dummyproject.R
@@ -13,7 +12,6 @@ import com.example.dummyproject.ui.adapter.RepositoryAdapter
 import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -44,8 +42,6 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         binding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -85,31 +81,23 @@ class MainActivity : BaseActivity() {
             binding?.networkResult = response
             when (response) {
                 is NetworkResult.Success -> {
-                    response.data?.items?.let {
-                        repositories = it
-                        repositoryAdapter.datasetChanged(repositories)
-                    }
+                    refreshAdapter(response.data?.items)
                 }
-
                 is NetworkResult.Error -> {
-                    loadDataFromCache()
+                    refreshAdapter(response.data?.items)
                 }
-
             }
 
 
         }
+
+
     }
 
-
-    private fun loadDataFromCache() {
-        lifecycleScope.launch {
-            mainViewModel.readRepositories.observe(this@MainActivity) { database ->
-                if (database.isNotEmpty()) {
-                    repositories = database[0].repositoriesResponse.items
-                    repositoryAdapter.datasetChanged(repositories)
-                }
-            }
+    private fun refreshAdapter(items: List<RepositoriesResponse.Item>?) {
+        items?.let {
+            repositories = it
+            repositoryAdapter.datasetChanged(repositories)
         }
     }
 

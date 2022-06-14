@@ -25,11 +25,13 @@ class RepositoryAdapter(
     }
 
     fun datasetChanged(repositories: List<RepositoriesResponse.Item>) {
+        this.repositories = repositories
+        notifyDataSetChanged()
+
 //        val itemsDiffUtil =
 //            ItemsDiffUtil(this.repositories, repositories)
 //        val diffUtilResult = DiffUtil.calculateDiff(itemsDiffUtil)
         this.repositories = repositories
-        notifyDataSetChanged()
 //        diffUtilResult.dispatchUpdatesTo(this)
 
     }

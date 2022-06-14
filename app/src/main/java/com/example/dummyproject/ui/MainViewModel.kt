@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.dummyproject.base.BaseViewModel
 import com.example.dummyproject.data.Repository
-import com.example.dummyproject.data.database.entites.RepositoriesEntity
 import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,11 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
-    /**======== repositories Local Database MutableLiveData ========*/
-    private var _readRepositories: MutableLiveData<List<RepositoriesEntity>> =
-        MutableLiveData()
-    val readRepositories: LiveData<List<RepositoriesEntity>> =
-        _readRepositories
 
     /**======== repositories Remote Database MutableLiveData ========*/
     private var _repositoriesResponse: MutableLiveData<NetworkResult<RepositoriesResponse>> =
@@ -62,31 +56,28 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
 
     /**======== save data in local database ========*/
     private fun insertRepositories(
-        repositoriesEntity: RepositoriesEntity,
         repositoriesResponse: RepositoriesResponse
     ) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.local.insertRepositories(repositoriesEntity)
-            repository.local.readRepositories().collect {
-                _readRepositories.postValue(it)
-                _repositoriesResponse.postValue(NetworkResult.Success(repositoriesResponse))
-            }
+            repository.local.insertRepositories(repositoriesResponse)
+            _repositoriesResponse.postValue(NetworkResult.Success(data = repository.local.readRepositories()))
         }
 
 
     private fun offlineCacheRepositories(repositoriesResponse: RepositoriesResponse) {
-        val recipesEntity = RepositoriesEntity(repositoriesResponse)
-        insertRepositories(recipesEntity, repositoriesResponse)
+        insertRepositories(repositoriesResponse)
     }
 
 
     /**========read data from local database ========*/
     private fun readRepositoriesFromCache(message: String) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.local.readRepositories().collect {
-                _readRepositories.postValue(it)
-                _repositoriesResponse.postValue(NetworkResult.Error(message))
-            }
+            _repositoriesResponse.postValue(
+                NetworkResult.Error(
+                    message,
+                    data = repository.local.readRepositories()
+                )
+            )
         }
 
 }
