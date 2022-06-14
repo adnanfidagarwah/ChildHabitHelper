@@ -31,7 +31,7 @@ class RepositoryAdapter(
 //        val itemsDiffUtil =
 //            ItemsDiffUtil(this.repositories, repositories)
 //        val diffUtilResult = DiffUtil.calculateDiff(itemsDiffUtil)
-        this.repositories = repositories
+//        this.repositories = repositories
 //        diffUtilResult.dispatchUpdatesTo(this)
 
     }
