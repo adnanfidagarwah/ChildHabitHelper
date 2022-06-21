@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.dummyproject.base.BaseViewModel
-import com.example.dummyproject.data.Repository
+import com.example.dummyproject.data.usecases.LoadRepositoriesUsecase
 import com.example.dummyproject.ui.model.RepositoriesResponse
 import com.example.dummyproject.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,13 +13,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
+class MainViewModel @Inject constructor(private val loadRepositoriesUsecase: LoadRepositoriesUsecase) :
+    BaseViewModel() {
 
+    private var _uiState = MutableLiveData<MainUiState>()
+    var uiStateLiveData: LiveData<MainUiState> = _uiState
 
     /**======== repositories Remote Database MutableLiveData ========*/
-    private var _repositoriesResponse: MutableLiveData<NetworkResult<RepositoriesResponse>> =
+    private var _repositoriesResponse: MutableLiveData<RepositoriesResponse> =
         MutableLiveData()
-    val repositoriesResponse: LiveData<NetworkResult<RepositoriesResponse>> =
+    val repositoriesResponse: LiveData<RepositoriesResponse> =
         _repositoriesResponse
 
 
@@ -31,11 +34,25 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
 
     /**======== get Repositories API call Methods ========*/
     fun getRepositories() = viewModelScope.launch(Dispatchers.IO) {
-        getRepositoriesSafeCall()
+
+        loadRepositoriesUsecase().collect { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    _uiState.postValue(ContentState)
+                    _repositoriesResponse.postValue(response.data)
+                }
+                is NetworkResult.Error -> {
+                    _uiState.postValue(response.message?.let { ErrorState(it) })
+                }
+                is NetworkResult.Loading -> {
+                    _uiState.postValue(LoadingState)
+                }
+            }
+        }
     }
 
 
-    private suspend fun getRepositoriesSafeCall() {
+/*    private suspend fun getRepositoriesSafeCall() {
         _repositoriesResponse.postValue(NetworkResult.Loading())
         try {
             val response = repository.remote.getRepositories()
@@ -52,9 +69,10 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
         } catch (e: Exception) {
             readRepositoriesFromCache(e.message.toString())
         }
-    }
+    }*/
 
     /**======== save data in local database ========*/
+/*
     private fun insertRepositories(
         repositoriesResponse: RepositoriesResponse
     ) =
@@ -62,23 +80,24 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
             repository.local.insertRepositories(repositoriesResponse)
             _repositoriesResponse.postValue(NetworkResult.Success(data = repository.local.readRepositories()))
         }
+*/
 
 
-    private fun offlineCacheRepositories(repositoriesResponse: RepositoriesResponse) {
+    /*private fun offlineCacheRepositories(repositoriesResponse: RepositoriesResponse) {
         insertRepositories(repositoriesResponse)
-    }
+    }*/
 
 
     /**========read data from local database ========*/
-    private fun readRepositoriesFromCache(message: String) =
-        viewModelScope.launch(Dispatchers.IO) {
-            _repositoriesResponse.postValue(
-                NetworkResult.Error(
-                    message,
-                    data = repository.local.readRepositories()
-                )
-            )
-        }
+    /* private fun readRepositoriesFromCache(message: String) =
+         viewModelScope.launch(Dispatchers.IO) {
+             _repositoriesResponse.postValue(
+                 NetworkResult.Error(
+                     message,
+                     data = repository.local.readRepositories()
+                 )
+             )
+         }*/
 
 }
 

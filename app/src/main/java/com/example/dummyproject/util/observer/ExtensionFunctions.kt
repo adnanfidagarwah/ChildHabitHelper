@@ -1,5 +1,6 @@
 package com.example.dummyproject.util.observer
 
+import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -25,3 +26,15 @@ inline fun <reified T, K, V> Map<K, V>.toObject(): T = Gson().fromJson(this.toJs
 
 // and more classic but less used
 fun <T> String.toObject(type: Type): T = Gson().fromJson(this, type)
+
+fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+fun View.gone() {
+    visibility = View.GONE
+}
+
+fun View.invisible() {
+    visibility = View.INVISIBLE
+}

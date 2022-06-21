@@ -7,8 +7,7 @@ import retrofit2.http.GET
 
 interface NetworkApi {
 
-
     @GET(Constants.REPOSITORIES_API)
-    suspend fun getRepositories(): Response<RepositoriesResponse>
+    suspend fun loadRepositories(): Response<RepositoriesResponse>
 
 }

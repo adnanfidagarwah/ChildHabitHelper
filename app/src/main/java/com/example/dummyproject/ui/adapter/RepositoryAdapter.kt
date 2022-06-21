@@ -2,9 +2,11 @@ package com.example.dummyproject.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dummyproject.databinding.RepositoryItemDataBinding
 import com.example.dummyproject.ui.model.RepositoriesResponse
+import com.example.dummyproject.util.ItemsDiffUtil
 
 class RepositoryAdapter(
     private var repositories: List<RepositoriesResponse.Item> = listOf(),
@@ -25,14 +27,14 @@ class RepositoryAdapter(
     }
 
     fun datasetChanged(repositories: List<RepositoriesResponse.Item>) {
-        this.repositories = repositories
-        notifyDataSetChanged()
-
-//        val itemsDiffUtil =
-//            ItemsDiffUtil(this.repositories, repositories)
-//        val diffUtilResult = DiffUtil.calculateDiff(itemsDiffUtil)
 //        this.repositories = repositories
-//        diffUtilResult.dispatchUpdatesTo(this)
+//        notifyDataSetChanged()
+
+        val itemsDiffUtil =
+            ItemsDiffUtil(this.repositories, repositories)
+        val diffUtilResult = DiffUtil.calculateDiff(itemsDiffUtil)
+        this.repositories = ArrayList(repositories)
+        diffUtilResult.dispatchUpdatesTo(this)
 
     }
 

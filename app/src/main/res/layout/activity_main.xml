@@ -34,7 +34,6 @@
         <include
             android:id="@+id/shimmer_view"
             layout="@layout/shimmer_layout"
-            show="@{networkResult.status == Status.LOADING  &amp;&amp; viewModel.repositoriesResponse.data.items.size() == 0 }"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,8 +45,7 @@
         <include
             android:id="@+id/error_view"
             layout="@layout/error_layout"
-            show="@{networkResult.status == Status.ERROR &amp;&amp; viewModel.repositoriesResponse.data.items.size() == 0}"
-            android:layout_width="match_parent"
+             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +54,6 @@
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_layout"
-            show="@{networkResult.status != Status.LOADING  &amp;&amp; viewModel.repositoriesResponse.data.items.size() != 0}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +63,6 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                show="@{networkResult.status != Status.LOADING  &amp;&amp; viewModel.repositoriesResponse.data.items.size() != 0 }"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="@dimen/margin_16"

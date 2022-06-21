@@ -1,6 +1,7 @@
 package com.example.dummyproject.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -10,7 +11,8 @@ import com.example.dummyproject.base.BaseActivity
 import com.example.dummyproject.databinding.MainActivityDataBinding
 import com.example.dummyproject.ui.adapter.RepositoryAdapter
 import com.example.dummyproject.ui.model.RepositoriesResponse
-import com.example.dummyproject.util.NetworkResult
+import com.example.dummyproject.util.observer.gone
+import com.example.dummyproject.util.observer.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -48,6 +50,7 @@ class MainActivity : BaseActivity() {
 
         binding?.viewModel = mainViewModel
 
+
         /**======================== setting Adapter ========================*/
         binding?.recyclerView?.layoutManager = LinearLayoutManager(
             this,
@@ -76,21 +79,33 @@ class MainActivity : BaseActivity() {
 //        loadDataFromCache()
         /**======================== OBSERVERS ========================*/
 
-        /**======================== API RESPONSE OBSERVERS ========================*/
-        mainViewModel.repositoriesResponse.observe(this) { response ->
-            binding?.networkResult = response
-            when (response) {
-                is NetworkResult.Success -> {
-                    refreshAdapter(response.data?.items)
+        mainViewModel.uiStateLiveData.observe(this) { state ->
+            when (state) {
+                is LoadingState -> {
+                    binding?.recyclerView?.gone()
+                    binding?.errorView?.root?.gone()
+                    binding?.shimmerView?.root?.visible()
                 }
-                is NetworkResult.Error -> {
-                    refreshAdapter(response.data?.items)
+
+                is ContentState -> {
+                    binding?.recyclerView?.visible()
+                    binding?.errorView?.root?.gone()
+                    binding?.shimmerView?.root?.gone()
+                }
+
+                is ErrorState -> {
+                    Toast.makeText(this, state.message, Toast.LENGTH_LONG).show()
+                    binding?.recyclerView?.gone()
+                    binding?.errorView?.root?.visible()
+                    binding?.shimmerView?.root?.gone()
                 }
             }
-
-
         }
 
+        /**======================== API RESPONSE OBSERVERS ========================*/
+        mainViewModel.repositoriesResponse.observe(this) { response ->
+            refreshAdapter(response.items)
+        }
 
     }
 

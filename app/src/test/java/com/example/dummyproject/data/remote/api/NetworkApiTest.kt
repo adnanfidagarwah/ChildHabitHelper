@@ -37,7 +37,7 @@ class NetworkApiTest : ApiAbstract<NetworkApi>() {
         enqueueResponse("/repositories_response.json")
 
         // Invoke
-        val response = networkApi.getRepositories()
+        val response = networkApi.loadRepositories()
         val responseBody = requireNotNull((response.body()))
         mockWebServer.takeRequest()
 

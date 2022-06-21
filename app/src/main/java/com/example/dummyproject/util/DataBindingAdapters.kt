@@ -19,6 +19,7 @@ fun hideView(view: View?, show: Boolean = false) {
 }
 
 
+
 @BindingAdapter("expand")
 fun expandView(expandableLayout: ExpandableLayout?, hide: Boolean = false) {
     if (hide) {

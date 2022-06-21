@@ -3,7 +3,7 @@ package com.example.dummyproject.viewmodels
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.dummyproject.data.LocalDataSource
 import com.example.dummyproject.data.RemoteDataSource
-import com.example.dummyproject.data.Repository
+import com.example.dummyproject.data.repository.RepositoryImpl
 import com.example.dummyproject.data.database.RepositoriesDao
 import com.example.dummyproject.ui.MainViewModel
 import com.example.dummyproject.ui.model.RepositoriesResponse
@@ -32,7 +32,7 @@ class MainViewModelTest : TestCase() {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val testDispatcher = TestCoroutineDispatcher()
-    private lateinit var repository: Repository
+    private lateinit var repository: RepositoryImpl
     private lateinit var remote: RemoteDataSource
     private lateinit var local: LocalDataSource
     private lateinit var viewModel: MainViewModel
@@ -48,7 +48,7 @@ class MainViewModelTest : TestCase() {
 
         repositoriesDao = mock(RepositoriesDao::class.java)
 
-        repository = Repository(remoteDataSource = remote, localDataSource = local)
+        repository = RepositoryImpl(remoteDataSource = remote, localDataSource = local)
 
         viewModel = MainViewModel(repository)
     }

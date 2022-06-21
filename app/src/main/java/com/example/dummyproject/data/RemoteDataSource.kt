@@ -11,7 +11,7 @@ class RemoteDataSource @Inject constructor(
 ) {
 
     suspend fun getRepositories(): Response<RepositoriesResponse> {
-        return networkApi.getRepositories()
+        return networkApi.loadRepositories()
     }
 
 }
