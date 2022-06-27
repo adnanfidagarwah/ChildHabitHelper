@@ -1,7 +1,7 @@
 package com.example.dummyproject.data.remote.api
 
 import com.example.dummyproject.MainCoroutineRule
-import com.example.dummyproject.network.NetworkApi
+import com.example.dummyproject.data.remote.network.NetworkApi
 import com.google.common.truth.Truth
 import kotlinx.coroutines.runBlocking
 import org.junit.After

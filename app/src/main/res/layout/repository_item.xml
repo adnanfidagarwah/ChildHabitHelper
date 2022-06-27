@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.example.dummyproject.ui.model.RepositoriesResponse.Item" />
+            type="com.example.dummyproject.presentation.ui.model.RepositoriesResponse.Item" />
 
     </data>
 

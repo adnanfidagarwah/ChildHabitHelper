@@ -5,9 +5,9 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
-import com.example.dummyproject.network.NetworkApi
-import com.example.dummyproject.util.Constants
-import com.example.dummyproject.util.NoConnectionInterceptor
+import com.example.dummyproject.data.remote.network.NetworkApi
+import com.example.dummyproject.presentation.util.Constants
+import com.example.dummyproject.presentation.util.NoConnectionInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

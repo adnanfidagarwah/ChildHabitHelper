@@ -6,22 +6,22 @@
 
     <data class="MainActivityDataBinding">
 
-        <import type="com.example.dummyproject.util.Status" />
+        <import type="com.example.dummyproject.presentation.util.Status" />
 
         <variable
             name="viewModel"
-            type="com.example.dummyproject.ui.MainViewModel" />
+            type="com.example.dummyproject.presentation.ui.MainViewModel" />
 
         <variable
             name="networkResult"
-            type="com.example.dummyproject.util.NetworkResult" />
+            type="com.example.dummyproject.presentation.util.NetworkResult" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        tools:context=".presentation.ui.MainActivity">
 
         <include
             android:id="@+id/include"
@@ -45,7 +45,7 @@
         <include
             android:id="@+id/error_view"
             layout="@layout/error_layout"
-             android:layout_width="match_parent"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

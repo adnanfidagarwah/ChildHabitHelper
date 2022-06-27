@@ -1,9 +1,8 @@
 package com.example.dummyproject.data.di
 
-import android.app.Application
-import com.example.dummyproject.data.repository.Repository
-import com.example.dummyproject.data.repository.RepositoryImpl
-import com.example.dummyproject.network.NetworkApi
+import com.example.dummyproject.domain.repository.Repository
+import com.example.dummyproject.domain.repository.RepositoryImpl
+import com.example.dummyproject.data.remote.network.NetworkApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

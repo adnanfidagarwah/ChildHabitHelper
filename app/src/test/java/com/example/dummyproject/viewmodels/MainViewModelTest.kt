@@ -1,13 +1,13 @@
 package com.example.dummyproject.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.dummyproject.data.LocalDataSource
-import com.example.dummyproject.data.RemoteDataSource
-import com.example.dummyproject.data.repository.RepositoryImpl
-import com.example.dummyproject.data.database.RepositoriesDao
-import com.example.dummyproject.ui.MainViewModel
-import com.example.dummyproject.ui.model.RepositoriesResponse
-import com.example.dummyproject.util.NetworkResult
+import com.example.dummyproject.data.local.LocalDataSource
+import com.example.dummyproject.data.remote.RemoteDataSource
+import com.example.dummyproject.domain.repository.RepositoryImpl
+import com.example.dummyproject.data.local.database.RepositoriesDao
+import com.example.dummyproject.presentation.ui.MainViewModel
+import com.example.dummyproject.presentation.ui.model.RepositoriesResponse
+import com.example.dummyproject.presentation.util.NetworkResult
 import io.mockk.mockk
 import junit.framework.TestCase
 import kotlinx.coroutines.Dispatchers

@@ -2,8 +2,8 @@ package com.example.dummyproject.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.dummyproject.data.database.RepositoriesDatabase
-import com.example.dummyproject.util.Constants.Companion.DATABASE_NAME
+import com.example.dummyproject.data.local.database.RepositoriesDatabase
+import com.example.dummyproject.presentation.util.Constants.Companion.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
