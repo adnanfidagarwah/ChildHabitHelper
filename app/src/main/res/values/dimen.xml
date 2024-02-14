@@ -13,11 +13,12 @@
 
 
     <dimen name="margin_16">@dimen/_13sdp</dimen>
-    <dimen name="illustration_size">@dimen/_150sdp</dimen>
+    <dimen name="illustration_size">@dimen/_200sdp</dimen>
     <dimen name="margin_18">@dimen/_16sdp</dimen>
     <dimen name="margin_24">@dimen/_20sdp</dimen>
     <dimen name="margin_32">@dimen/_28sdp</dimen>
     <dimen name="margin_10">@dimen/_10sdp</dimen>
+    <dimen name="margin_4">@dimen/_3sdp</dimen>
     <dimen name="margin_8">@dimen/_6sdp</dimen>
     <dimen name="margin_42">@dimen/_42sdp</dimen>
     <dimen name="margin_56">@dimen/_56sdp</dimen>
@@ -67,12 +68,12 @@
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">@dimen/_8ssp
     </dimen>
 
-    <dimen name="headline1_text_size">@dimen/_28ssp</dimen>
-    <dimen name="headline2_text_size">@dimen/_28ssp</dimen>
-    <dimen name="headline3_text_size">@dimen/_28ssp</dimen>
+    <dimen name="headline1_text_size">@dimen/_10ssp</dimen>
+    <dimen name="headline2_text_size">@dimen/_12ssp</dimen>
+    <dimen name="headline3_text_size">@dimen/_18ssp</dimen>
     <dimen name="headline4_text_size">@dimen/_28ssp</dimen>
-    <dimen name="headline5_text_size">@dimen/_28ssp</dimen>
-    <dimen name="headline6_text_size">@dimen/_16ssp</dimen>
+    <dimen name="headline5_text_size">@dimen/_16ssp</dimen>
+    <dimen name="headline6_text_size">@dimen/_12ssp</dimen>
     <dimen name="subtitle1_text_size">@dimen/_28ssp</dimen>
     <dimen name="subtitle2_text_size">@dimen/_12ssp</dimen>
     <dimen name="body1_text_size">@dimen/_13ssp</dimen>

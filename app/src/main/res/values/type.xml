@@ -38,39 +38,44 @@
     <!--applied globally across your app.-->
 
     <style name="TextAppearance.MdcTypographyStyles.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
-        <item name="fontFamily">@font/montserrat_light</item>
-        <item name="android:fontFamily">@font/montserrat_light</item>
-        <item name="android:textSize">97sp</item>
+        <item name="fontFamily">@font/montserrat_medium</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">@dimen/headline1_text_size</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextAppearance.MdcTypographyStyles.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
-        <item name="fontFamily">@font/montserrat_light</item>
-        <item name="android:fontFamily">@font/montserrat_light</item>
-        <item name="android:textSize">61sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textSize">@dimen/headline2_text_size</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextAppearance.MdcTypographyStyles.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
-        <item name="fontFamily">@font/montserrat_regular</item>
-        <item name="android:fontFamily">@font/montserrat_regular</item>
-        <item name="android:textSize">48sp</item>
+        <item name="fontFamily">@font/montserrat_medium</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">@dimen/headline3_text_size</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextAppearance.MdcTypographyStyles.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="fontFamily">@font/montserrat_regular</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
-        <item name="android:textSize">34sp</item>
-    </style>
+        <item name="android:textSize">@dimen/headline6_text_size</item>
+    </style>f
 
     <style name="TextAppearance.MdcTypographyStyles.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/montserrat_regular</item>
-        <item name="android:fontFamily">@font/montserrat_regular</item>
-        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">@dimen/headline5_text_size</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextAppearance.MdcTypographyStyles.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/montserrat_medium</item>
-        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
         <item name="android:textSize">@dimen/headline6_text_size</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextAppearance.MdcTypographyStyles.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
@@ -144,9 +149,9 @@
     </style>
 
     <style name="ThemeOverlay.App.TabLayout" parent="">
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorSurface">@color/blue</item>
-        <item name="colorOnSurface">@color/white</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
     </style>
 
 
@@ -180,4 +185,19 @@
         <!--  <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>-->
     </style>
 
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+        <item name="titleTextAppearance">@style/TextAppearance.MdcTypographyStyles.Headline6</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.MdcTypographyStyles.Subtitle1</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.ActionBar" parent="">
+        <item name="colorPrimary">@color/white</item>
+    </style>
 </resources>

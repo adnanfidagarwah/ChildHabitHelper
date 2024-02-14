@@ -39,7 +39,7 @@ fun setImageUrl(view: ImageView, imageUrl: String?) {
         view.load(imageUrl) {
             crossfade(true)
             transformations(CircleCropTransformation())
-            placeholder(R.drawable.ic_launcher_background)
+            placeholder(R.drawable.arrow_back)
         }
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_goals"
+        android:name="com.example.dummyproject.presentation.ui.home.ui.goals.GoalsFragment"
+        android:label="@string/title_goals"
+        tools:layout="@layout/goals_fragment">
+        <action
+            android:id="@+id/action_navigation_goals_to_setGoalFragment"
+            app:destination="@id/setGoalFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.dummyproject.presentation.ui.home.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_navigation_home_to_addChildFragment"
+            app:destination="@id/addChildFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addChildFragment"
+        android:name="com.example.dummyproject.presentation.ui.home.ui.add_child.AddChildFragment"
+        android:label="fragment_add_child"
+        tools:layout="@layout/add_child_fragment" />
+
+
+    <fragment
+        android:id="@+id/navigation_profile_management"
+        android:name="com.example.dummyproject.presentation.ui.home.ui.childs.ChildsFragment"
+        android:label="profile_management_fragment"
+        tools:layout="@layout/childs_fragment" >
+        <action
+            android:id="@+id/action_navigationa_profile_management_to_addChildFragment"
+            app:destination="@id/addChildFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FAQsFragment"
+        android:name="com.example.dummyproject.presentation.ui.home.ui.faqs.FAQsFragment"
+        android:label="faqs_fragment"
+        tools:layout="@layout/faqs_fragment" />
+    <fragment
+        android:id="@+id/blogFragment"
+        android:name="com.example.dummyproject.presentation.ui.home.ui.blog.BlogFragment"
+        android:label="blog_fragment"
+        tools:layout="@layout/blog_fragment" />
+    <fragment
+        android:id="@+id/setGoalFragment"
+        android:name="com.example.dummyproject.presentation.ui.home.ui.set_goal.SetGoalFragment"
+        android:label="set_goal_fragment"
+        tools:layout="@layout/set_goal_fragment" />
+</navigation>

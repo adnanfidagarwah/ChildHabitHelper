@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.home.ui.goals.GoalsFragment">
+
+
+    <include
+        android:id="@+id/header_layout"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_8"
+        android:elevation="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/line_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Total Points"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="@color/light_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintEnd_toStartOf="@+id/textView19"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@drawable/light_blue_background"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_16"
+        android:paddingVertical="@dimen/_1sdp"
+        android:text="20"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/header_layout" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/margin_8"
+        app:layout_constraintBottom_toTopOf="@+id/button_layout"
+        app:layout_constraintTop_toBottomOf="@+id/textView17">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/routines_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_24"
+                android:gravity="center_horizontal"
+                tools:text="Routines"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/margin_16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/routines_goals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/margin_8"
+                android:scrollbars="none" />
+
+
+            <TextView
+                android:id="@+id/activities_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center_horizontal"
+                tools:text="Activities"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/margin_16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/activities_goals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/margin_8"
+                android:scrollbars="none" />
+
+
+            <TextView
+                android:id="@+id/health_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center_horizontal"
+                tools:text="Health"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/margin_16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/health_goals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/margin_8"
+                android:scrollbars="none" />
+
+
+            <TextView
+                android:id="@+id/others_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center_horizontal"
+                tools:text="Others"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/margin_16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/others_goals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/margin_8"
+                android:scrollbars="none" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <include
+        android:id="@+id/button_layout"
+        layout="@layout/button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.dummyproject.data.di
 
+import com.example.dummyproject.data.local.LocalDataSource
 import com.example.dummyproject.domain.repository.Repository
 import com.example.dummyproject.domain.repository.RepositoryImpl
 import com.example.dummyproject.data.remote.network.NetworkApi
@@ -16,7 +17,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideImagineRepository(apiService: NetworkApi): Repository {
-        return RepositoryImpl(apiService)
+    fun provideImagineRepository(apiService: NetworkApi, local:LocalDataSource): Repository {
+        return RepositoryImpl(apiService, local)
     }
 }

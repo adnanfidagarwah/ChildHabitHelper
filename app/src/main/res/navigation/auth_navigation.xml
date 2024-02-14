@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation_graph"
+    app:startDestination="@id/OBScreenFragment">
+
+    <fragment
+        android:id="@+id/OBScreenFragment"
+        android:name="com.example.dummyproject.presentation.ui.auth.ob_screens.OBScreenFragment"
+        android:label="OBScreenFragment"
+        tools:layout="@layout/o_b_screen_fragment">
+        <action
+            android:id="@+id/action_OBScreenFragment_to_LoginSignUpFragment"
+            app:destination="@id/LoginSignUpFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoginSignUpFragment"
+        android:name="com.example.dummyproject.presentation.ui.auth.login_signup.LoginSignUpFragment"
+        android:label="LoginSignUpFragment"
+        tools:layout="@layout/login_sign_up_fragment"/>
+</navigation>

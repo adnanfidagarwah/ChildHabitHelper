@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:paddingTop="@dimen/_100sdp">
+
+
+    <include layout="@layout/drawer_item_layout"
+        android:id="@+id/add_child_layout"/>
+
+    <include layout="@layout/drawer_item_layout"
+        android:id="@+id/profile_management_layout"/>
+
+    <include layout="@layout/drawer_item_layout"
+        android:id="@+id/faqs_layout"/>
+
+    <include layout="@layout/drawer_item_layout"
+        android:id="@+id/blog_layout"/>
+
+    <include layout="@layout/drawer_item_layout"
+        android:id="@+id/about_us_layout"/>
+
+    <include layout="@layout/drawer_item_layout"
+        android:id="@+id/privacy_policy_layout"/>
+
+
+</LinearLayout>

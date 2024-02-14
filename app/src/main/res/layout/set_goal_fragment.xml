@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.home.ui.set_goal.SetGoalFragment">
+
+
+    <include
+        android:id="@+id/header_layout"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_8"
+        android:elevation="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_24"
+        android:alpha=".98"
+        android:background="#3A3A3A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/white_line_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Total Points"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="@color/light_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintEnd_toStartOf="@+id/textView19"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@drawable/light_blue_background"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_16"
+        android:paddingVertical="@dimen/_1sdp"
+        android:text="20"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/header_layout" />
+
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/set_goal_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24"
+        android:elevation="@dimen/_7sdp"
+        app:layout_constraintStart_toStartOf="@+id/header_layout"
+        app:layout_constraintTop_toTopOf="@+id/background_image" />
+
+
+    <TextView
+        android:id="@+id/point_deducting_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_minus16sdp"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@drawable/label_round_background"
+        android:backgroundTint="@color/shrine_red"
+        android:drawableStart="@drawable/tick"
+        android:elevation="@dimen/margin_8"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_4"
+        android:paddingStart="@dimen/margin_8"
+        android:paddingEnd="@dimen/margin_16"
+        android:text="  Point Deducting"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/include2"
+        app:layout_constraintTop_toTopOf="@+id/include2" />
+
+
+    <TextView
+        android:id="@+id/point_rewarding_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_minus16sdp"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:background="@drawable/label_round_background"
+        android:drawableStart="@drawable/tick"
+        android:elevation="@dimen/margin_8"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_4"
+        android:paddingStart="@dimen/margin_8"
+        android:visibility="gone"
+        android:paddingEnd="@dimen/margin_16"
+        android:text="  Point Rewarding"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/arrow_one"
+        app:layout_constraintStart_toEndOf="@+id/include2" />
+
+    <ImageView
+        android:id="@+id/arrow_one"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:rotation="280"
+        android:src="@drawable/intro_arrow"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/include2"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/include2"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+
+    <ImageView
+        android:id="@+id/intro_one"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_minus32sdp"
+        android:src="@drawable/set_goal_tool_tip_box"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/arrow_one"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_one" />
+
+
+    <ImageView
+        android:id="@+id/arrow_two"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:rotation="300"
+        android:src="@drawable/intro_arrow"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/include2"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/include2"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+
+    <ImageView
+        android:id="@+id/intro_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:src="@drawable/editable_tool_tip_box"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/background_image"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_two" />
+
+
+    <ImageView
+        android:id="@+id/arrow_three"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:rotation="330"
+        android:src="@drawable/intro_arrow"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/intro_three"
+        app:layout_constraintStart_toStartOf="@+id/intro_three"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+
+    <ImageView
+        android:id="@+id/intro_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:src="@drawable/point_tool_tip_box"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/background_image"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_three" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/margin_8"
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/margin_16"
+        android:scrollbars="none"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/imageView17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/include2"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        app:spanCount="4"
+        tools:itemCount="10"
+        tools:listitem="@layout/image_picker_item_layout" />
+
+
+    <include
+        android:id="@+id/button_layout"
+        layout="@layout/button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

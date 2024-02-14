@@ -9,6 +9,10 @@ class Constants {
 
         // ROOM Database
         const val DATABASE_NAME = "repositories_database"
+
+        const val STATUS: String = "Status"
+
+
     }
 
 }

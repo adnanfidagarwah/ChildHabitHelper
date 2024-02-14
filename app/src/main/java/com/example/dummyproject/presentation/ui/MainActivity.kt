@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dummyproject.R
 import com.example.dummyproject.presentation.base.BaseActivity
 import com.example.dummyproject.databinding.MainActivityDataBinding
-import com.example.dummyproject.presentation.ui.adapter.RepositoryAdapter
 import com.example.dummyproject.presentation.ui.model.RepositoriesResponse
 import com.example.dummyproject.presentation.util.observer.gone
 import com.example.dummyproject.presentation.util.observer.visible
@@ -25,34 +24,19 @@ class MainActivity : BaseActivity() {
     private var repositories: List<RepositoriesResponse.Item> = listOf()
     var lastItemClickedPosition: Int? = null
 
-    private val repositoryAdapter: RepositoryAdapter by lazy {
-        RepositoryAdapter()
-        { position ->
 
-            if (lastItemClickedPosition != position) {
-                lastItemClickedPosition?.let {
-                    repositories[it].expand = false
-                }
-                lastItemClickedPosition = position
-            }
-            repositories[position].expand = !repositories[position].expand
-
-            repositoryAdapter.datasetChanged(repositories)
-        }
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding?.viewModel = mainViewModel
 
 
         /**======================== setting Adapter ========================*/
-        binding?.recyclerView?.layoutManager = LinearLayoutManager(
+       /* binding?.recyclerView?.layoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL,
             false
@@ -75,11 +59,11 @@ class MainActivity : BaseActivity() {
         binding?.refreshLayout?.setOnRefreshListener {
             mainViewModel.getRepositories()
             binding?.refreshLayout?.isRefreshing = false
-        }
+        }*/
 //        loadDataFromCache()
         /**======================== OBSERVERS ========================*/
 
-        mainViewModel.uiStateLiveData.observe(this) { state ->
+       /* mainViewModel.uiStateLiveData.observe(this) { state ->
             when (state) {
                 is LoadingState -> {
                     binding?.recyclerView?.gone()
@@ -100,7 +84,7 @@ class MainActivity : BaseActivity() {
                     binding?.shimmerView?.root?.gone()
                 }
             }
-        }
+        }*/
 
         /**======================== API RESPONSE OBSERVERS ========================*/
         mainViewModel.repositoriesResponse.observe(this) { response ->
@@ -112,7 +96,6 @@ class MainActivity : BaseActivity() {
     private fun refreshAdapter(items: List<RepositoriesResponse.Item>?) {
         items?.let {
             repositories = it
-            repositoryAdapter.datasetChanged(repositories)
         }
     }
 

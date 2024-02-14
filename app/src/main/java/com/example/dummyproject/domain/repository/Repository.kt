@@ -1,9 +1,19 @@
 package com.example.dummyproject.domain.repository
 
-import com.example.dummyproject.presentation.ui.model.RepositoriesResponse
-import com.example.dummyproject.presentation.util.NetworkResult
-import kotlinx.coroutines.flow.Flow
+import com.example.dummyproject.data.local.database.child.Child
+import com.example.dummyproject.data.local.database.goal.Goal
+import com.example.dummyproject.data.local.database.goal_category.GoalCategory
 
 interface Repository {
-    suspend fun loadRepositories():  Flow<NetworkResult<RepositoriesResponse>>
+    suspend fun loadChild():  List<Child>
+
+    suspend fun insertChild(child: Child)
+
+    suspend fun updateChild(child: Child)
+
+    suspend fun getChildById(uid: Int): Child
+
+    suspend fun getGoalCategory():  List<GoalCategory>
+
+    suspend fun getGoal():  List<Goal>
 }

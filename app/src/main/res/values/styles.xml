@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="ThemeOverlay.MyTheme.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="bottomSheetStyle">@style/Widget.MyTheme.BottomSheet.Modal</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MyTheme.BottomSheet.Modal</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">
+            @android:color/transparent
+        </item>
+    </style>
+
+    <style name="Widget.MyTheme.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/_15sdp</item>
+        <item name="cornerSizeTopRight">@dimen/_15sdp</item>
+    </style>
+
+    <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
+    </style>
+
+    <style name="ThemeOverlay.App.RadioButton" parent="">
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+    </style>
+
+
+    <!--
+        <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+            <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
+            <item name="shapeAppearance">@style/ShapeAppearance.MyTheme.SmallComponent</item>
+            <item name="hintTextColor">?attr/colorOnSurface</item>
+        </style>
+
+        <style name="ThemeOverlay.App.TextInputLayout" parent="">
+            <item name="colorPrimary">?attr/colorPrimary</item>
+            <item name="colorOnSurface">?attr/colorOnSurface</item>
+            <item name="colorError">@color/shrine_red</item>
+            <item name="textAppearanceSubtitle1">@style/TextAppearance.MdcTypographyStyles.Subtitle1</item>
+            <item name="textAppearanceCaption">@style/TextAppearance.MdcTypographyStyles.Caption</item>
+            <item name="editTextStyle">@style/ThemeOverlay.Material3.TextInputEditText</item>
+        </style>-->
+
+</resources>

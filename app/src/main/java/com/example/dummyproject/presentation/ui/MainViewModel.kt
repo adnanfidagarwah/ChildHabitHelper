@@ -39,7 +39,10 @@ class MainViewModel @Inject constructor(private val loadRepositoriesUsecase: Loa
             when (response) {
                 is NetworkResult.Success -> {
                     _uiState.postValue(ContentState)
-                    _repositoriesResponse.postValue(response.data)
+                    response.data.let {
+                        _repositoriesResponse.postValue(it)
+                    }
+
                 }
                 is NetworkResult.Error -> {
                     _uiState.postValue(response.message?.let { ErrorState(it) })

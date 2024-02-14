@@ -4,7 +4,7 @@ buildscript {
     ext.nav_version = "2.3.5"
 //    ext.bintray_version = "1.8.5"
     ext.hilt_version = '2.38.1'
-    ext.tools_version = '7.0.2'
+    ext.tools_version = '7.0.1'
     repositories {
         google()
         mavenCentral()
@@ -13,7 +13,7 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath "com.android.tools.build:gradle:$tools_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
 
 //        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_version"
 //        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'

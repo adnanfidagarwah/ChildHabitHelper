@@ -3,16 +3,18 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
 }
 
 android {
-    compileSdk 31
-   // buildToolsVersion "30.0.3"
+    compileSdk 33
+    // buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.dummyproject"
         minSdkVersion 21
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -35,42 +37,45 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 ext {
     kotlin_version = '1.5.0'
-    kotx_version = '1.7.0'
-    appcompat_version = '1.4.1'
+    kotx_version = '1.9.0'
+    appcompat_version = '1.6.1'
     material_version = '1.5.0'
-    constraintlayout_version = '2.1.3'
+    constraintlayout_version = '2.1.4'
     junit_version = "4.13.2"
-    test_junit_version = "1.1.3"
-    espresso_version = "3.4.0"
-    sdp_version = "1.0.6"
+    test_junit_version = '1.1.4'
+    espresso_version = '3.5.0'
+    sdp_version = '1.1.0'
     support_version = "1.0.0"
     truth_version = '1.1.3'
-    fragment_version = '2.4.2'
+    fragment_version = '2.5.3'
 //    otp_version = "1.4.4"
 //    otp_view = "v1.1.2"
     circle_imageview_version = "3.1.0"
 //    switch_button_version = "1.2.2"
-    coroutines_version = '1.6.1-native-mt'
+    coroutines_version = '1.6.4'
     retrofit_version = "2.9.0"
-    gson_version = '2.9.0'
+    gson_version = '2.10'
     okhttp_version = '5.0.0-alpha.7'
-    core_ktx_version = '1.7.0'
+    core_ktx_version = '1.9.0'
     collection_ktx_version = '1.2.0'
-    viewmodel_ktx_version = '2.4.1'
-    fragment_ktx_version = '1.4.1'
-    navigation_ktx_version = '2.4.2'
+    viewmodel_ktx_version = '2.5.1'
+    fragment_ktx_version = '1.5.5'
+    navigation_ktx_version = '2.5.3'
     multidex_version = "2.0.1"
     playservices_version = '18.0.1'
     playservices_version_task = '18.0.1'
-    hilt_version = '2.41'
+    hilt_version = '2.44.2'
     datastore_version = '1.0.0'
     expandableLayout_version = '2.9.2'
     rating_version = '1.5.1'
-    coil_version = '1.3.2'
+    coil_version = '2.2.2'
     easypermission_version = '3.0.0'
     image_compression_version = '3.0.1'
     cropping_version = '2.2.6'
@@ -79,14 +84,16 @@ ext {
     security_version = '1.0.0-alpha02'
     shared_preference_version = '1.1.1'
     paging_version = '3.1.1'
-    lottie_version = '4.2.0'
+    lottie_version = '5.2.0'
     chuck_version = '3.5.2'
+    room_version = "2.5.2"
 
 }
 
 dependencies {
 
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-splashscreen:1.0.0"
     implementation "androidx.core:core-ktx:$kotx_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.google.android.material:material:$material_version"
@@ -164,7 +171,7 @@ dependencies {
 
     // dagger - hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    implementation 'androidx.test.espresso:espresso-contrib:3.5.0'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     // DataStore
@@ -201,19 +208,12 @@ dependencies {
 
     implementation "com.airbnb.android:lottie:$lottie_version"
 
-    // Room component
-    implementation 'androidx.room:room-runtime:2.3.0'
-    kapt 'androidx.room:room-compiler:2.3.0'
-    implementation 'androidx.room:room-ktx:2.3.0'
-    androidTestImplementation 'androidx.room:room-testing:2.3.0'
-
-
 
     /** Testing Libraries */
 
     testImplementation "junit:junit:$junit_version"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation 'io.mockk:mockk:1.12.4'
+    testImplementation 'io.mockk:mockk:1.13.3'
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     androidTestImplementation "androidx.test.ext:junit:$test_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
@@ -221,13 +221,29 @@ dependencies {
     testImplementation "com.google.truth:truth:$truth_version"
 
     // Optional -- Robolectric environment
-    testImplementation 'org.robolectric:robolectric:4.8.1'
-    testImplementation 'androidx.test:core:1.4.0'
+    testImplementation 'org.robolectric:robolectric:4.10'
+    testImplementation 'androidx.test:core:1.5.0'
 //    androidTestImplementation "org.robolectric:robolectric:4.6.1"
     // Optional -- Mockito framework
-    testImplementation 'org.mockito:mockito-core:4.5.1'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
 
-    testImplementation 'org.mockito:mockito-inline:4.5.1'
-    debugImplementation "androidx.test:core:1.4.0"
+    testImplementation 'org.mockito:mockito-inline:5.2.0'
+    debugImplementation 'androidx.test:core:1.5.0'
+
+    implementation 'com.facebook.android:facebook-login:latest.release'
+
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
+
+
+
+    //Room Database
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:$room_version"
+    // To use Kotlin Symbol Processing (KSP)
+    kapt "androidx.room:room-compiler:$room_version"
 
 }

@@ -10,7 +10,10 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import com.example.dummyproject.presentation.ui.MainActivity
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
+import com.example.dummyproject.R
+import com.example.dummyproject.presentation.ui.home.HomeActivity
 
 
 object Utils {
@@ -38,6 +41,7 @@ object Utils {
         }
 
 
+
         /*val window: Window = context.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -50,11 +54,17 @@ object Utils {
         context.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR*/
     }
 
-    fun getHome(activity: FragmentActivity?): MainActivity? {
-        return activity as MainActivity
+    fun getHome(activity: FragmentActivity?): HomeActivity {
+        return activity as HomeActivity
     }
 
-    fun hideKeyboard(activity: Activity?) {
+
+    fun homeBackpressed(activity: FragmentActivity?, view: View?) {
+        hideKeyboard(activity, view = view)
+        activity?.findNavController(R.id.nav_host_fragment_activity_home)?.popBackStack()
+    }
+
+    fun hideKeyboard(activity: Activity?, view: View?) {
         try {
             val inputManager = activity
                 ?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -89,19 +99,24 @@ object Utils {
         }
     }
 
-    /* fun navigateTo(activity: FragmentActivity?, navDirections: NavDirections) {
-         hideKeyboard(activity)
-         activity?.findNavController(R.id.nav_host)?.navigate(navDirections)
+    fun authNavigateTo(activity: FragmentActivity?, navDirections: NavDirections, view: View?) {
+        hideKeyboard(activity, view)
+        activity?.findNavController(R.id.nav_host_fragment_activity_home)?.navigate(navDirections)
+    }
+
+    fun navigateTo(activity: FragmentActivity?, navDirections: NavDirections, view: View?) {
+         hideKeyboard(activity, view)
+         activity?.findNavController(R.id.nav_host_fragment_activity_home)?.navigate(navDirections)
      }
 
-     fun popBackStack(activity: FragmentActivity?) {
-         hideKeyboard(activity)
-         activity?.findNavController(R.id.nav_host)?.popBackStack()
-     }
+    /* fun popBackStack(activity: FragmentActivity?) {
+        hideKeyboard(activity)
+        activity?.findNavController(R.id.nav_host)?.popBackStack()
+    }
 
-     fun hideDropDown(powerSpinnerView: PowerSpinnerView?) {
-         powerSpinnerView?.dismiss()
-     }*/
+    fun hideDropDown(powerSpinnerView: PowerSpinnerView?) {
+        powerSpinnerView?.dismiss()
+    }*/
 
 
 

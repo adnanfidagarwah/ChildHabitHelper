@@ -2,13 +2,17 @@ package com.example.dummyproject.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.dummyproject.data.local.database.RepositoriesDatabase
+import com.example.dummyproject.data.local.database.AppDatabase
+import com.example.dummyproject.data.local.database.RoomDbInitializer
+import com.example.dummyproject.data.local.database.goal.GoalDao
+import com.example.dummyproject.data.local.database.goal_category.GoalCategoryDao
 import com.example.dummyproject.presentation.util.Constants.Companion.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -18,14 +22,26 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDatabase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        goalCategoryProvider: Provider<GoalCategoryDao>,
+        goalProvider: Provider<GoalDao>
     ) = Room.databaseBuilder(
         context,
-        RepositoriesDatabase::class.java,
+        AppDatabase::class.java,
         DATABASE_NAME
+    ).addCallback(
+        RoomDbInitializer(goalCategoryProvider = goalCategoryProvider, goalProvider = goalProvider)
     ).build()
 
     @Singleton
     @Provides
-    fun provideDao(database: RepositoriesDatabase) = database.repositoriesDao()
+    fun provideChildDao(database: AppDatabase) = database.childDao()
+
+    @Singleton
+    @Provides
+    fun provideGoalCategoryDao(database: AppDatabase) = database.goalCategoryDao()
+
+    @Singleton
+    @Provides
+    fun provideGoalDao(database: AppDatabase) = database.goalDao()
 }
